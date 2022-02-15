@@ -1,0 +1,76 @@
+﻿@model IEnumerable<VewMVC.Models.PersonModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<h1>List Of People</h1>
+<p>
+    <a asp-action="AddPeople"> Add</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+                <td>
+                    @* Delete Đầu tiên chỉ tên hiển thị trên màn hình thao tác của người dùng *@
+                    @* Delete Thứ 2 là action ví dụ nếu đổi thành Edit thì khi bấm vào sẽ chuyển sang màn hình edit *@
+                    @* @Html.ActionLink("Delete", "Delete", new { confirm = true, id = item.Id }) *@
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
